@@ -148,6 +148,7 @@
     <ClInclude Include="MergeSort.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="SupportFunction.h" />
+    <ClInclude Include="TimSort.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

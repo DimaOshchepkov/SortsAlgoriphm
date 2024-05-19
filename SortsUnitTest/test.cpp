@@ -5,6 +5,7 @@
 #include "../SortsAlgoriphm/MergeSort.h"
 #include "../SortsAlgoriphm/SupportFunction.h"
 #include "../SortsAlgoriphm/CountingSort.h"
+#include "../SortsAlgoriphm/TimSort.h"
 
 #include <functional>
 #include <utility>
@@ -145,5 +146,23 @@ TEST(mergeSort, LargeVector) {
 }
 
 
+TEST(timSort, SimpleTest) {
+    testVectorCommon(timSort<int>);
+}
+TEST(timSort, EmptyVector) {
+    testEmptyVector(timSort<int>);
+}
+TEST(timSort, SortedVector) {
+    testSortedVector(timSort<int>);
+}
+TEST(timSort, ReverseSortedVector) {
+    testReverseSortedVector(timSort<int>);
+}
+TEST(timSort, DuplicateElements) {
+    testVectorWithDuplicates(timSort<int>);
+}
+TEST(timSort, LargeVector) {
+    testLargeVector(timSort<int>);
+}
 
 
