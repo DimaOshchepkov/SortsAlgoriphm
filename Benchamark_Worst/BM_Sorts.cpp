@@ -93,8 +93,6 @@ int main(int argc, char** argv) {
     }
 
     for (int i = 1'000; i <= 10'000; i += 1'000) {
-        auto i = std::format("vecs\\int_uniform_{}.txt", i);
-        auto i = std::format("int_uniform_{}.txt.txt", i);
         benchmark::RegisterBenchmark("BM_MergeSort/" + std::to_string(i), BM_MergeSort, i)->Unit(benchmark::kMillisecond);
         benchmark::RegisterBenchmark("BM_CountingSort/" + std::to_string(i), BM_CountingSort, i)->Unit(benchmark::kMillisecond);
         benchmark::RegisterBenchmark("BM_InsertionSort/" + std::to_string(i), BM_InsertionSort, i)->Unit(benchmark::kMillisecond);
@@ -103,8 +101,6 @@ int main(int argc, char** argv) {
     }
 
     for (int i = 50; i <= 500; i += 50) {
-        auto i = std::format("vecs\\int_uniform_{}.txt", i);
-        auto i = std::format("int_uniform_{}.txt.txt", i);
         benchmark::RegisterBenchmark("BM_MergeSort/" + std::to_string(i), BM_MergeSort, i)->Unit(benchmark::kMillisecond);
         benchmark::RegisterBenchmark("BM_CountingSort/" + std::to_string(i), BM_CountingSort, i)->Unit(benchmark::kMillisecond);
         benchmark::RegisterBenchmark("BM_InsertionSort/" + std::to_string(i), BM_InsertionSort, i)->Unit(benchmark::kMillisecond);
