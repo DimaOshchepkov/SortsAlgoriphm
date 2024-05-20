@@ -78,7 +78,8 @@ void _mergeSort(std::vector<T>& list, int lo, int hi, std::function<bool(const T
 /// <param name="comp"></param>
 /// <returns>tuple of soreted list, count comapare and count move</returns>
 template<typename T>
-std::tuple<std::vector<T>, long long, long long> mergeSort(std::vector<T> list, std::function<bool(const T&, const T&)> comp = std::less<T>()) {
+std::tuple<std::vector<T>, long long, long long> 
+mergeSort(std::vector<T> list, std::function<bool(const T&, const T&)> comp = std::less<T>()) {
     long long countCompare = 0;
     long long countMove = 0;
 

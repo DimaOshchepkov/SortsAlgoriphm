@@ -77,7 +77,13 @@ void mergeTim(std::vector<T>& arr, int l, int m, int r,
     }
 }
 
-// Timsort для вектора
+/// <summary>
+/// 
+/// </summary>
+/// <typeparam name="T"></typeparam>
+/// <param name="arr"></param>
+/// <param name="comp"></param>
+/// <returns>tuple of soreted list, count comapares, count swaps and count moves</returns>
 template <typename T>
 std::tuple<std::vector<T>, long long, long long, long long>
 timSort(std::vector<T> arr, std::function<bool(const T&, const T&)> comp = std::less<T>()) {

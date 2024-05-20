@@ -1,8 +1,9 @@
 #include <Benchmark/benchmark.h>
 #include <memory>
-#include <iostream>
+#include <numeric>
 #include <string>
-#include <format>
+#include <random>
+
 
 #include <stdexcept>
 
@@ -17,9 +18,8 @@ using namespace std;
 
 
 static void BM_MergeSort(benchmark::State& state, int N) {
-    std::vector<int> vec;
-    vec.reserve(N);
-    std::generate(vec.begin(), vec.end(), [n = N]() mutable { return --n; });
+    std::vector<int> vec(N);
+    std::iota(vec.begin(), vec.end(), 0);
 
     for (auto _ : state) {
         auto arr = mergeSort(vec);
@@ -29,9 +29,8 @@ static void BM_MergeSort(benchmark::State& state, int N) {
 
 
 static void BM_InsertionSort(benchmark::State& state, int N) {
-    std::vector<int> vec;
-    vec.reserve(N);
-    std::generate(vec.begin(), vec.end(), [n = N]() mutable { return --n; });
+    std::vector<int> vec(N);
+    std::iota(vec.rbegin(), vec.rend(), 0);
 
     for (auto _ : state) {
         auto arr = insertionSort(vec);
@@ -40,9 +39,8 @@ static void BM_InsertionSort(benchmark::State& state, int N) {
 }
 
 static void BM_BubbleSort(benchmark::State& state, int N) {
-    std::vector<int> vec;
-    vec.reserve(N);
-    std::generate(vec.begin(), vec.end(), [n = N]() mutable { return --n; });
+    std::vector<int> vec(N);
+    std::iota(vec.rbegin(), vec.rend(), 0);
 
     for (auto _ : state) {
         auto arr = bubbleSort(vec);
@@ -53,9 +51,9 @@ static void BM_BubbleSort(benchmark::State& state, int N) {
 
 
 static void BM_CountingSort(benchmark::State& state, int N) {
-    std::vector<int> vec;
-    vec.reserve(N);
-    std::generate(vec.begin(), vec.end(), [n = N]() mutable { return --n; });
+    std::vector<int> vec(N);
+    std::iota(vec.rbegin(), vec.rend(), 2'000'000'000 - N);
+
 
     for (auto _ : state) {
         auto arr = countingSort<int>(vec, [](auto p) { return p; });
@@ -63,11 +61,32 @@ static void BM_CountingSort(benchmark::State& state, int N) {
     }
 }
 
+std::vector<int> generateRandomArray(int a, int b, int size) {
+    // Создаем генератор случайных чисел
+    std::random_device rd;
+    std::mt19937 generator(rd());
+
+    // Создаем равномерное распределение в диапазоне [a, b]
+    std::uniform_int_distribution<> distribution(a, b);
+
+    // Создаем пустой вектор для хранения случайных чисел
+    std::vector<int> randomArray;
+
+    // Заполняем вектор случайными числами
+    for (int i = 0; i < size; ++i) {
+        randomArray.push_back(distribution(generator));
+    }
+
+    // Возвращаем сгенерированный массив
+    return randomArray;
+}
 
 static void BM_TimSort(benchmark::State& state, int N) {
-    std::vector<int> vec;
-    vec.reserve(N);
-    std::generate(vec.begin(), vec.end(), [n = N]() mutable { return --n; });
+
+    std::vector<int> vec(N);
+    std::iota(vec.rbegin(), vec.rend(), 0);
+
+    vec = generateRandomArray(0, N / 100, N);
 
     for (auto _ : state) {
         auto arr = timSort<int>(vec);
