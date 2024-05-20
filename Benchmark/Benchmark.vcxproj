@@ -24,6 +24,7 @@
     <ProjectGuid>{bf00e8d2-e21d-444d-8fa6-31c80b11fdd3}</ProjectGuid>
     <RootNamespace>Benchmark</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Benchmark_Average</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
