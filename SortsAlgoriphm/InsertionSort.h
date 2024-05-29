@@ -21,20 +21,19 @@ insertionSort(std::vector<T> list, std::function<bool(const T&, const T&)> comp 
     // Iterate through the list
     for (unsigned int i = 1; i < list.size(); i++) {
         T elem = list[i];
-        int j = i - 1;
+        auto it = std::lower_bound(list.begin(), list.begin() + i, elem, comp);
+        size_t j = std::distance(list.begin(), it);
+        countCompare += static_cast<long long>(log2(i)) + 1;
 
-        // Compare elem with the elements before it, and swap if necessary. 
-        // Swapping is done by repeatedly moving the elements one unit back.
-        while (j >= 0 && !comp(list[j], elem)) {
-            countCompare++;
-            countMove++;
-            list[j + 1] = list[j];
-            j--;
+        if (j < i) {
+            T temp = list[i];
+            for (size_t k = i; k > j; --k) {
+                list[k] = list[k - 1];
+                countMove++;
+            }
+            countSwap++;
+            list[j] = temp;
         }
-
-        countSwap++;
-        list[j + 1] = elem;
-        if (j >= 0) countCompare++;
     }
     return { list, countCompare, countSwap, countMove };
 }

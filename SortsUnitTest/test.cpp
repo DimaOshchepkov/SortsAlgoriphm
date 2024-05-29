@@ -6,6 +6,7 @@
 #include "../SortsAlgoriphm/SupportFunction.h"
 #include "../SortsAlgoriphm/CountingSort.h"
 #include "../SortsAlgoriphm/TimSort.h"
+#include "../SortsAlgoriphm/LibrarySort.h"
 
 #include <functional>
 #include <utility>
@@ -166,3 +167,21 @@ TEST(timSort, LargeVector) {
 }
 
 
+TEST(librarySort, SimpleTest) {
+    testVectorCommon(librarySort<int>);
+}
+TEST(librarySort, EmptyVector) {
+    testEmptyVector(librarySort<int>);
+}
+TEST(librarySort, SortedVector) {
+    testSortedVector(librarySort<int>);
+}
+TEST(librarySort, ReverseSortedVector) {
+    testReverseSortedVector(librarySort<int>);
+}
+TEST(librarySort, DuplicateElements) {
+    testVectorWithDuplicates(librarySort<int>);
+}
+TEST(librarySort, LargeVector) {
+    testLargeVector(librarySort<int>);
+}

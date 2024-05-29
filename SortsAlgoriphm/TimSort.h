@@ -10,20 +10,24 @@
 // Функция сортировки вставками для части вектора
 template <typename T>
 void insertionSortTim(std::vector<T>& arr, int left, int right,
-    std::function<bool(const T&, const T&)> comp, long long& comparisons, long long& swaps, long long& moves) {
+    std::function<bool(const T&, const T&)> comp,
+    long long& comparisons, long long& swaps, long long& moves) {
     for (int i = left + 1; i <= right; ++i) {
-        T temp = arr[i];
-        int j = i - 1;
-        while (j >= left && !comp(arr[j], temp)) {
-            ++comparisons;
-            ++moves;
-            arr[j + 1] = arr[j];
-            --j;
-            
+
+        T elem = arr[i];
+        auto it = std::lower_bound(arr.begin() + left, arr.begin() + i, elem, comp);
+        size_t j = std::distance(arr.begin(), it);
+        comparisons += static_cast<long long>(log2(i)) + 1;
+
+        if (j < i) {
+            T temp = arr[i];
+            for (size_t k = i; k > j; --k) {
+                arr[k] = arr[k - 1];
+                moves++;
+            }
+            swaps++;
+            arr[j] = temp;
         }
-        ++swaps;
-        arr[j + 1] = temp;
-        if (j >= left) ++comparisons;
     }
 }
 

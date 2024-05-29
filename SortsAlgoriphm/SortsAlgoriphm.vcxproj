@@ -145,6 +145,7 @@
     <ClInclude Include="CountingSort.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="InsertionSort.h" />
+    <ClInclude Include="LibrarySort.h" />
     <ClInclude Include="MergeSort.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="SupportFunction.h" />
