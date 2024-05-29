@@ -14,6 +14,7 @@
 #include "../SortsAlgoriphm/SupportFunction.h"
 #include "../SortsAlgoriphm/CountingSort.h"
 #include "../SortsAlgoriphm/TimSort.h"
+#include "../SortsAlgoriphm/LibrarySort.h"
 
 using namespace std;
 
@@ -41,7 +42,7 @@ string getSolutionDir() {
 
 int main()
 {
-    std::ofstream bubbleFileSwap(getSolutionDir() + "\\CountsSwapsMoves\\bubble_swap.txt",
+    /*std::ofstream bubbleFileSwap(getSolutionDir() + "\\CountsSwapsMoves\\bubble_swap.txt",
         std::ios_base::app);
     std::ofstream bubbleFileCompare(getSolutionDir() + "\\CountsSwapsMoves\\bubble_compare.txt",
         std::ios_base::app);
@@ -51,25 +52,30 @@ int main()
     std::ofstream insertionFileCompare(getSolutionDir() + "\\CountsSwapsMoves\\insertion_compare.txt",
         std::ios_base::app);
     std::ofstream insertionFileMove(getSolutionDir() + "\\CountsSwapsMoves\\insertion_move.txt",
-        std::ios_base::app);
+        std::ios_base::app);*/
 
-    std::ofstream mergeFileCompare(getSolutionDir() + "\\CountsComparesMoves\\merge_compare.txt",
+    std::ofstream mergeFileCompare(getSolutionDir() + "\\CountsSwapsMoves\\merge_compare.txt",
         std::ios_base::app);
-    std::ofstream mergeFileMove(getSolutionDir() + "\\CountsSwapsMoves\\merge_move.txt",
-        std::ios_base::app);
+    /*std::ofstream mergeFileMove(getSolutionDir() + "\\CountsSwapsMoves\\merge_move.txt",
+        std::ios_base::app);*/
 
+    std::ofstream libraryFileCompare(getSolutionDir() + "\\CountsSwapsMoves\\library_compare.txt",
+        std::ios_base::app);
+   std::ofstream libraryFileMove(getSolutionDir() + "\\CountsSwapsMoves\\library_move.txt",
+        std::ios_base::app);
+   /*
     std::ofstream timFileSwap(getSolutionDir() + "\\CountsSwapsMoves\\tim_swap.txt",
         std::ios_base::app);
     std::ofstream timFileCompare(getSolutionDir() + "\\CountsSwapsMoves\\tim_compare.txt",
         std::ios_base::app);
     std::ofstream timFileMove(getSolutionDir() + "\\CountsSwapsMoves\\tim_move.txt",
-        std::ios_base::app);
+        std::ios_base::app);*/
 
     for (int i = 20'000; i <= 300'000; i += 20'000) {
         auto intUniformFileName = std::format("arrays\\int_uniform_{}.txt", i);
         auto intUniformName = std::format("int_uniform_{}.txt.txt", i);
         auto vec = readIntegersFromFile(getSolutionDir() + "\\" + intUniformFileName);
-
+        /*
         auto [soredBubble, comapareBubble, swapBubble] = bubbleSort(vec);
         bubbleFileSwap << i << " " << swapBubble << "\n";
         bubbleFileCompare << i << " " << comapareBubble << "\n";
@@ -77,34 +83,41 @@ int main()
         auto [soredIsertion, comapareIsertion, swapIsertion, moveIsertion] = insertionSort(vec);
         insertionFileSwap << i << " " << swapIsertion << "\n";
         insertionFileCompare << i << " " << comapareIsertion << "\n";
-        insertionFileMove << i << " " << moveIsertion << "\n";
+        insertionFileMove << i << " " << moveIsertion << "\n";*/
 
-        auto [soredMerge, compareMerge, moveMerge] = mergeSort(vec);
-        mergeFileCompare << i << " " << compareMerge << "\n"; // Assuming mergeFileSwap is intended for move counts
-        mergeFileMove << i << " " << moveMerge << "\n";
+        //auto [soredMerge, compareMerge, moveMerge] = mergeSort(vec);
+        //mergeFileCompare << i << " " << compareMerge << "\n"; // Assuming mergeFileSwap is intended for move counts
+        //mergeFileMove << i << " " << moveMerge << "\n";
 
+        auto [soredLibrary, compareLibrary, moveLibrary] = librarySort(vec);
+        libraryFileCompare << i << " " << compareLibrary << "\n"; // Assuming LibraryFileSwap is intended for move counts
+        libraryFileMove << i << " " << moveLibrary << "\n";
+        /*
         auto [soredTim, comapareTim, swapTim, moveTim] = timSort(vec);
         timFileSwap << i << " " << swapTim << "\n";
         timFileCompare << i << " " << comapareTim << "\n";
-        timFileMove << i << " " << moveTim << "\n";
+        timFileMove << i << " " << moveTim << "\n";*/
 
         std::cout << i << " size arrays completed\n";
     }
 
     // Закрытие файлов
-    bubbleFileSwap.close();
+    /*bubbleFileSwap.close();
     bubbleFileCompare.close();
 
     insertionFileSwap.close();
     insertionFileCompare.close();
-    insertionFileMove.close();
+    insertionFileMove.close();*/
 
     mergeFileCompare.close();
-    mergeFileMove.close();
+    //mergeFileMove.close();
 
-    timFileSwap.close();
+    libraryFileCompare.close();
+    libraryFileMove.close();
+
+    /*timFileSwap.close();
     timFileCompare.close();
-    timFileMove.close();
+    timFileMove.close();*/
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

@@ -12,7 +12,7 @@ double log2(int x) {
 
 template <typename T>
 std::tuple<std::vector<T>, long long, long long> librarySort(std::vector<T>& vec,
-    std::function<bool(const T&, const T&)> comp) {
+    std::function<bool(const T&, const T&)> comp = std::less<T>()) {
 
     if (vec.size() <= 1) {
         return { vec, 0, 0 };
