@@ -445,3 +445,4 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/c++,visualstudio,vcpkg
 
 arrays/*
+benchmark_x64-windows/
